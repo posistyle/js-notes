@@ -27,9 +27,9 @@
 	}	
 	foo(2);
 
-		1.foo 进行 RHS查询 
-		2.a = 2 进行LHS查询
-		3.a 进行RHS查询
-		4.console对象进行RHS查询
+	1.foo 进行 RHS查询 
+	2.a = 2 进行LHS查询
+	3.a 进行RHS查询
+	4.console对象进行RHS查询
 
 
