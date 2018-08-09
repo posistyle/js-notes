@@ -13,5 +13,19 @@
 		console.log(err);//ReferenceError: err is not defined
 
 	3.let（let 关键字将变量绑定到所在的任意作用域中-->通常是{ .. }内部）
+    
+        function f1() {
+            let n = 5;
+            if (true) {
+            let n = 10;
+            }
+            console.log(n); // 5
+        }
 
-	4.
+	4.const（声明常量）
+
+        const PI = 3.1415;
+        PI // 3.1415
+        PI = 3; // TypeError: Assignment to constant variable.
+
+
