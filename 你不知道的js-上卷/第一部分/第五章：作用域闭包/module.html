@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<script type="text/javascript">
+	var MyMoudele = (function() {
+		var modules = {};
+		function define(name, deps, impl){
+			var len = deps.length
+			for(var i=0; i<len; i++){
+				deps[i] = modules[deps[i]]
+
+			}
+			console.log(deps)
+			modules[name] = impl.call(impl, deps);
+			console.log(modules)
+		}
+		function get(name) {
+			return modules[name]
+		}
+		return {
+			define:define,
+			get:get
+		}
+	})()
+
+	MyMoudele.define('bar', [], function(){
+		function hello (who){
+			return who
+		}
+		function jump (who) {
+			return who + 'jump'
+		}
+		return {
+			hello:hello,
+			jump:jump
+		}
+	})
+
+	MyMoudele.define('test', ['bar'], function(fn){
+		function longjump() {
+			console.log( fn.jump('yxq') + '2m')
+		}
+		function driver(car) {
+			return car
+		}
+		return {
+			longjump:longjump,
+			driver:driver
+		}
+	})	
+
+	MyMoudele.define('foo', ['bar', 'test'], function(fn){
+		console.log(fn)
+		var bar = fn[0];
+		var test = fn[1];
+		var name = 'qrq';
+		function awesome() {
+			console.log( bar.hello(name).toUpperCase() );
+		}
+		function whoDriver() {
+			console.log( test.driver('奔驰') )
+		}
+		return {
+			awesome:awesome,
+			whoDriver:whoDriver
+		}
+	})
+	var foo = MyMoudele.get('foo');
+	console.log(foo)
+</script>
+</body>
+</html>
